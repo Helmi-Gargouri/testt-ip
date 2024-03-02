@@ -10,7 +10,7 @@ public class Main {
 
         //**Actualite*//
         ActualiteService as = new ActualiteService() ;
-        as.ajouter(new Actualite("aaaaaaaaaaaaaaaaaaaaaa","11/11/1988"));
+        //as.ajouter(new Actualite("aaaaaaaaaaaaaaaaaaaaaa","11/11/1988"));
         //as.modifier(new Actualite("aaaaaaaaaaaaaaaaaaaaaa","11/11/1988"));
         //as.supprimer(new Actualite("aaaaaaaaaaaaaaaaaaaaaa","11/11/1988"));
         //System.out.println(as.afficher());

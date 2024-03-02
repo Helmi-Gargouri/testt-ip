@@ -16,8 +16,9 @@ public class ActualiteService implements IService<Actualite> {
         connection = ConnexionDB.getInstance().getCon();
     }
     @Override
+    //done
     public void ajouter(Actualite actualite) {
-        String req = "INSERT into actualite(text,date) values ('" + actualite.getText() + "', '" + actualite.getDate() + "');";
+        String req = "INSERT into actualite(titre,text,date,image) values ('" + actualite.getTitre() + "','" + actualite.getText() + "', '" + actualite.getDate() + "', '" + actualite.getImage() + "');";
         try {
             Statement st = connection.createStatement();
             st.executeUpdate(req);
@@ -25,6 +26,7 @@ public class ActualiteService implements IService<Actualite> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     @Override
@@ -39,6 +41,7 @@ public class ActualiteService implements IService<Actualite> {
         }
     }
     @Override
+    //supprimer
     public void supprimer(Actualite actualite) {
         String req = "DELETE from Actualite where id = " + actualite.getId() + ";";
         try {
@@ -51,33 +54,39 @@ public class ActualiteService implements IService<Actualite> {
     }
 
     @Override
+    //done
     public List<Actualite> afficher() {
-        List<Actualite> Actualite = new ArrayList<>();
+        List<Actualite> actualite = new ArrayList<>();
 
         String req = "SELECT * from actualite";
         try {
+            System.out.println("_____1___");
             Statement st = connection.createStatement();
+            System.out.println("_____2___");
             ResultSet rs = st.executeQuery(req);
+            System.out.println("_____3___");
             while (rs.next()) {
-                Actualite.add(new Actualite(rs.getInt("id"), rs.getString("text"), rs.getString("date")));
+                System.out.println(rs.getInt("id"));
+                actualite.add(new Actualite(rs.getInt("id"), rs.getString("titre"),rs.getString("text"), rs.getDate("date") ,rs.getString("image") ));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        return Actualite;
+        return actualite;
     }
 
     @Override
     public Actualite findById(int idd) throws SQLException {
-        String req = "SELECT * FROM actualite WHERE id_com = " + idd + ";";
+ /*       String req = "SELECT * FROM actualite WHERE id_c = " + idd + ";";
         ResultSet res = ste.executeQuery(req);
         if (res.next()) {
             int id = res.getInt(1);
             String text = res.getString(2);
             String date = res.getString(3);
             return new Actualite (id, text, date);
-        }
+        }*/
         return null;
     }
+
 }
